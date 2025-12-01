@@ -1,3 +1,13 @@
+/* REQUIRED - can edit/delete and add ur own description so that he can grade and know who did what.
+** CSC 310 Final Project 
+** Authors: Samantha Woodburn, Adelina Chocho, Reeya Patel, Megan Mohr 
+** 
+** Program to read in a QFS disk image and list information about the disk 
+** image and list information about the disk image from the superblock
+** and its directory contents.
+**
+*/
+
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>

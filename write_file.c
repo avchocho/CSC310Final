@@ -1,4 +1,14 @@
-#include <stdio.h>
+/* OPTIONAL - can edit/delete and add ur own description so that he can grade and know who did what.
+** CSC310 Final Project 
+** Authors: Samantha Woodburn, Adelina Chocho, Reeya Patel, Megan Mohr 
+** 
+** Program to read in a QFS disk image and add a specified file from the
+** current working directory to the disk image. It should take one command
+** line argument for the image, and one of the name of the file to be added.
+**
+*/
+
+include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include "qfs.h"

@@ -1,5 +1,6 @@
 /*
-**
+** CSC310 Final Project
+** Authors: Samantha Woodburn, Adelina Chocho, Reeya Patel, Megan Mohr
 ** Header file containing definitions for the QFS (Quinnipiac File System)
 **
 ** Usage: #include "qfs.h"

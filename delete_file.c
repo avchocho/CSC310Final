@@ -1,3 +1,13 @@
+/* OPTIONAL - can edit/delete and add ur own description so that he can grade and know who did what.
+** CSC 310 Final Project 
+** Authors: Samantha Woodburn, Adelina Chocho, Reeya Patel, Megan Mohr 
+** 
+** Program to read in a QFS disk image and delete a specified file from the disk image.
+** It should take two command line arguements, one for the name of the disk image and one
+** for the the file to be deleted.
+**
+*/
+
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
