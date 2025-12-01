@@ -1,6 +1,7 @@
 /* REQUIRED - can edit/delete and add ur own description so that he can grade and know who did what.
 ** CSC310 Final Project 
 ** Authors: Samantha Woodburn, Adelina Chocho, Reeya Patel, Megan Mohr 
+**
 ** Program to make a filesystem on a blank file using the qfs parameters
 **
 ** Usage: mkfs_qfs <disk image file> [<label>]
