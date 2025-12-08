@@ -1,4 +1,4 @@
-/* REQUIRED - can edit/delete and add ur own description so that he can grade and know who did what.
+/* 
 ** CSC310 Final Project 
 ** Authors: Samantha Woodburn, Adelina Chocho, Reeya Patel, Megan Mohr 
 **
@@ -96,15 +96,48 @@ int main(int argc, char *argv[]) {
 #endif
 
     // Calculate block size and counts (TODO: adjust these calculations as needed)
-    int total_data_available = (file_size - sizeof(superblock_t) - (sizeof(direntry_t) * 255));
-    sb.bytes_per_block = 512;
+    //int total_data_available = (file_size - sizeof(superblock_t) - (sizeof(direntry_t) * 255));
+    //sb.bytes_per_block = 512;
+   
+    //Choose the QFS block size based on disk image size
+    // this keeps the total number of blocks under 2^16-1 
+    
+    const long thirty_mb = 30L * 1024L * 1024L;
+    const long sixty_mb = 60L * 1024L * 1024L;
+    const long one_twenty_mb = 120L * 1024L * 1024L;
+    
+    if (file_size <= thirty_mb) {
+		sb.bytes_per_block = 512;
+	} else if (file_size <=sixty_mb) {
+		sb.bytes_per_block = 1024;
+	} else if (file_size <= one_twenty_mb) {
+		sb.bytes_per_block = 2048;
+	} else {
+		fprintf(stderr, "Error: the disk image is too large for QFS. \n");
+		fclose(fp);
+		return 3;
+	}
+	
+#ifdef DEBUG
+    fprintf(stderr, "Block size: %d bytes\n", sb.bytes_per_block);
+#endif
+	
+	
+	//compute how many data bytes and blocks fit after the header space
+	long header_size = sizeof(superblock_t) + (long)sizeof(direntry_t) * 255L;
+	long total_data_available = file_size - header_size;
+	
+	if (total_data_available <= 0) {
+		fprintf(stderr, "Error: disk image is too small to hold QFS header.\n");
+		fclose(fp);
+		return 4;
+	}
 
 #ifdef DEBUG
-    fprintf(stderr, "Total data available: %d\n", total_data_available);
-    fprintf(stderr, "Block size: %d\n", sb.bytes_per_block);
+    fprintf(stderr, "Total data available: %ld\n", total_data_available);
 #endif
 
-    sb.total_blocks = total_data_available / sb.bytes_per_block;
+    sb.total_blocks = (uint16_t)(total_data_available / sb.bytes_per_block);
 
 #ifdef DEBUG
     fprintf(stderr, "Total blocks: %d\n", sb.total_blocks);
